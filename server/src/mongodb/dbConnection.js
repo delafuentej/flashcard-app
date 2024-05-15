@@ -10,7 +10,7 @@ console.log('uri',typeof uri);
 let client;
 
 const connectToDatabase=async()=>{
- if(client){
+ if(client && client.topology.isConnected()){
   return client;
  }
 

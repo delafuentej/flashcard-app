@@ -50,7 +50,7 @@ const startServer = async()=>{
     });
 
     app.listen(PORT, ()=>{
-        console.log(`Server listening on PORT: ${PORT}${server.graphqlPath}`)
+        console.log(`Server listening on PORT: http://localhost:${PORT}${server.graphqlPath}`)
 })
 
 }
