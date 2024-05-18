@@ -2,6 +2,7 @@ import {RouterProvider, createBrowserRouter, createRoutesFromElements, Route} fr
 import AllFlashcards from '../src/Components/views/AllFlashcards/AllFlashcards.js';
 import AddFlashcard from '../src/Components/views/AddFlashcard/AddFlashcard.js';
 import EditFlashcard from '../src/Components/views/EditFlashcard/EditFlashcard.js';
+import Navbar from './Components/Navbar/Navbar.js';
 
 import './App.css';
 
@@ -9,7 +10,7 @@ import './App.css';
 
 const appRouter= createBrowserRouter(createRoutesFromElements(
   <>
-                <Route exact path='/' element={<AllFlashcards />} />
+                <Route path='/' element={<AllFlashcards />} />
                 <Route path='add-flashcard' element={<AddFlashcard />} />
                 <Route path= 'edit-flashcard/:id' element={<EditFlashcard />} />
               
@@ -20,12 +21,23 @@ const appRouter= createBrowserRouter(createRoutesFromElements(
 
 function App() {
   return (
-    <RouterProvider router={appRouter} />
+    <>
+    
+    <RouterProvider router={appRouter}>
+      <Navbar />
+    </RouterProvider>
+  
+  
+  
+  </>
+  
 
-
-
+  
+   
 
     
+
+      
 );
 }
 

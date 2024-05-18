@@ -26,6 +26,7 @@ root.render(
     <ApolloProvider client={client}>
             <App />
             <ToastContainer />
+
     </ApolloProvider>
   </React.StrictMode>
 );
