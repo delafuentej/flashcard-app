@@ -1,5 +1,6 @@
 
 import React, {useState} from 'react';
+import ReactCardFlip from 'react-card-flip';
 
 const Flashcard=()=>{
     //state flashcard:
@@ -55,16 +56,29 @@ const Flashcard=()=>{
 
                     </div>
 
-
-
-
-
-
-
-
                 </div>
 
             </div>
+            {/* ReactCardFlip from 'react-card-flip' npm package */}
+            <ReactCardFlip>
+                <div className='card-content has-background-warning'>
+                    <div className='content'>
+                        {/* question */}
+                    </div>
+                </div>
+
+                <div className='card-content has-background-success has-text-white'>
+                    <div className='content'>
+                        {/* answer */}
+                    </div>
+                </div>
+
+            </ReactCardFlip>
+
+
+
+
+
 
         </div>
 
