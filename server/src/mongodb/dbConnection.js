@@ -20,7 +20,7 @@ try {
     useUnifiedTopology: true,
   });
   await client.connect();
-  console.log('client',client)
+ // console.log('client',client)
   console.log('Connected successfully to MongoDB Atlas');
   return client;
 } catch (error){
