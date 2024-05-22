@@ -8,17 +8,21 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createHttpLink, InMemoryCache, ApolloClient, ApolloProvider} from '@apollo/client';
 //setting up an apollo client:
-const URI= process.env.URI;
+const URI= process.env.REACT_APP_URI;
+console.log('URI', URI)
 // link to graphql server
 const link= createHttpLink({
   uri: `${URI}`
 });
+console.log('link',link);
 const cache = new InMemoryCache();
+console.log('cache', cache);
 //to create ApolloClient
 const client = new ApolloClient({
   link, 
   cache
 });
+console.log('client', client)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
