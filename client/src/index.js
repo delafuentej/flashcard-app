@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 //ToastContainer =>notifications package
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { createHttpLink, InMemoryCache, ApolloClient, ApolloProvider} from '@apollo/client';
+import { createHttpLink, HttpLink, InMemoryCache, ApolloClient, ApolloProvider} from '@apollo/client';
 //setting up an apollo client:
 const URI= process.env.REACT_APP_URI;
 console.log('URI', URI)
 // link to graphql server
-const link= createHttpLink({
+const link= new HttpLink({
   uri: `${URI}`
 });
 console.log('link',link);

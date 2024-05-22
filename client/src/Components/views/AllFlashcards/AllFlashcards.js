@@ -41,7 +41,9 @@ const AllFlashcards =()=>{
     const {data, loading, error} = useQuery(FLASHCARDS_QUERY);
     console.log('data', data)
     console.log('error', error)
+    console.log('useQuery',useQuery(FLASHCARDS_QUERY));
     // to define updateFlashcard
+  
     const [updateFlashcard] = useMutation(EDIT_FLASHCARD);
     // to define deleteFlashcard, setting up updating by using readQuery and writeQuery functions
     const [deleteFlashcard] = useMutation(DELETE_FLASHCARD, {
@@ -62,6 +64,9 @@ const AllFlashcards =()=>{
         },
     });
 
+      if(loading) return 'Loading...'
+    if(error) return `Error! ${error.message}`
+
     return(
         <div className='container'>
             <h1> All Flashcards
@@ -73,6 +78,7 @@ const AllFlashcards =()=>{
             <div className='box has-background-info'>
                 <div className='columns is-multiline'>
                     {console.log('data',data)}
+                    {}
 
                 </div>
 

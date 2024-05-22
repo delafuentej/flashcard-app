@@ -107,7 +107,7 @@ const AddFlashcard =()=>{
                     <div className="field">
                         <div className="control">
                             <button className="button is-link" type="submit">
-                            Add Flashcard
+                                Add Flashcard
                             </button>
                         </div>
                     </div>
