@@ -19,6 +19,8 @@ const startServer = async()=>{
     //url where the client(frontend) is running
     const clientUrl= process.env.CLIENT_URL;
     console.log('clientUrl',clientUrl)
+
+    //This code block tells to express server to accept cross-origin requests (CORS) only from the specified URL client
     //cors config.:
     app.use(cors({
         origin: clientUrl,
