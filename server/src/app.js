@@ -35,13 +35,13 @@ const startServer = async()=>{
     app.get('/', async(req, res)=>{
         try {
             const client = await connectToDatabase();
-            //console.log('client', client)
+            console.log('client', client)
             const database = client.db(DATABASE_NAME);
-            //console.log('database', database)
+            console.log('database', database)
             const collection = database.collection(COLLECTION_NAME);
-            //console.log('collection', collection)
+            console.log('collection', collection)
             const data = await collection.find({}).toArray();
-            //console.log('data', data)
+            console.log('data', data)
             res.json(data);
         }catch(error){
             console.log(error, error.message);
