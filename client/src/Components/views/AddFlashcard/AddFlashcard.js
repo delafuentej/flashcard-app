@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 //import apollo client
 import {gql, useMutation} from '@apollo/client';
 import styles from './AddFlasscard.module.css';
-import AllFlashcards from '../AllFlashcards/AllFlashcards';
+import AllFlashcardsComponent from '../AllFlashcards/AllFlashcards.js';
 
 // to provide the "question" and "answer" properties
 const ADD_FLASHCARD = gql`
