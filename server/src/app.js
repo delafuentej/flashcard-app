@@ -3,23 +3,40 @@ const {ApolloServer} = require('apollo-server-express');
 const typeDefs = require('../src/graphql/shema');
 const resolvers = require('../src/resolvers/resolvers');
 const  connectToDatabase  = require('../src/mongodb/dbConnection');
+//import middleware cors to enable  on the express server
+const cors = require('cors');
 
 console.log('connectiontoDB',connectToDatabase)
 //import library dotenv
 require('dotenv').config({path:'.env.local'});
 
+
 const startServer = async()=>{
 
     const app= express();
+
+
+    //url where the client(frontend) is running
+    const clientUrl= process.env.CLIENT_URL;
+    console.log('clientUrl',clientUrl)
+    //cors config.:
+    app.use(cors({
+        origin: clientUrl,
+        credentials: true
+    }));
 
     //config Apollo Server
     const server = new ApolloServer({
         typeDefs,
         resolvers,
+        context: ({req}) =>{
+            return {req};
+        },
     });
 
     await server.start();
-    server.applyMiddleware({app});
+    // disables apollo-specific CORS, as i already handle it with express
+    server.applyMiddleware({app, path: 'graphql', cors: false});
 
     //connection to MongoDB
     //await connectToDatabase();
@@ -32,6 +49,7 @@ const startServer = async()=>{
     // console.log('collection_name', COLLECTION_NAME);
 
     //connection to MongoDB
+    //// Endpoint to obtain data from MongoDB
     app.get('/', async(req, res)=>{
         try {
             const client = await connectToDatabase();
