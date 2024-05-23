@@ -39,7 +39,7 @@ const resolvers = {
                 throw new Error('Error updating flashcard');
               }
         },
-        async deleteFlashcard(root, {_id}){
+        async deleteFlashcard(_, {_id}){
             try {
                 return await Flashcard.findOneAndRemove({ _id });
               } catch (error) {

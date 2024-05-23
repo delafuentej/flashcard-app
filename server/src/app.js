@@ -4,7 +4,7 @@ const typeDefs = require('../src/graphql/shema');
 const resolvers = require('../src/resolvers/resolvers');
 const  connectToDatabase  = require('../src/mongodb/dbConnection');
 //import middleware cors to enable  on the express server
-const cors = require('cors');
+// const cors = require('cors');
 
 console.log('connectiontoDB',connectToDatabase)
 //import library dotenv
@@ -15,30 +15,30 @@ const startServer = async()=>{
 
     const app= express();
 
-
-    //url where the client(frontend) is running
-    const clientUrl= process.env.CLIENT_URL;
-    console.log('clientUrl',clientUrl)
-
-    //This code block tells to express server to accept cross-origin requests (CORS) only from the specified URL client
-    //cors config.:
-    app.use(cors({
-        origin: clientUrl,
-        credentials: true
-    }));
-
     //config Apollo Server
     const server = new ApolloServer({
         typeDefs,
         resolvers,
-        context: ({req}) =>{
-            return {req};
-        },
+        // context: ({req}) =>{
+        //     return {req};
+        // },
     });
 
     await server.start();
+
+
+     
+    //Apollo Server middleware is applied to the /graphql path.
     // disables apollo-specific CORS, as i already handle it with express
-    server.applyMiddleware({app, path: 'graphql', cors: false});
+    //server.applyMiddleware({app, path: 'graphql', cors: false});
+    server.applyMiddleware({app})
+
+
+    //url where the client(frontend) is running
+    // const clientUrl= process.env.CLIENT_URL;
+    // console.log('clientUrl',clientUrl)
+
+   
 
     //connection to MongoDB
     //await connectToDatabase();
@@ -65,12 +65,20 @@ const startServer = async()=>{
             res.json(data);
         }catch(error){
             console.log(error, error.message);
-            res.status(500).send('Error connecting to db', error.message);
+            res.status(500).json({ error: 'Error connecting to MongoDB'});
         }
     });
 
+     //This code block tells to express server to accept cross-origin requests (CORS) only from the specified URL client
+    //cors config.:
+    // app.use(cors({
+    //     origin: clientUrl,
+    //     credentials: true
+    // }));
+
+
     app.listen(PORT, ()=>{
-        console.log(`Server listening on PORT: http://localhost:${PORT}${server.graphqlPath}`)
+        console.log(`Server listening on PORT: http://localhost:${PORT}/${server.graphqlPath}`)
 })
 
 }
